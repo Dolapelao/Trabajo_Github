@@ -24,6 +24,7 @@ def contact(request):
     contactForm = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        
         if form.is_valid():
             form.save()
     else:
