@@ -79,3 +79,20 @@ def cerrar_sesion(request):
 def admin_reservas(request):
     reserva = Reserva.objects.all()
     return render(request, 'app/administrar_reservas.html', {'reservas': reserva})
+
+@login_required(login_url='/login')
+@user_passes_test(lambda u: u.is_superuser)
+def mod_reservas(request, id):
+    reserva = Reserva.objects.get(id=id)
+    fecha_formateada = reserva.fecha_viaje.strftime('%Y-%m-%d')
+    datos={
+        'form': ReservaForm(instance=reserva),
+        'fecha': fecha_formateada
+    }
+
+    if request.method=='POST':
+        formulario = ReservaForm(data=request.POST, instance=reserva)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('admin_reservas')
+    return render(request, 'app/modificar_reserva.html', datos)
