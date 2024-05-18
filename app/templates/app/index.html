@@ -23,43 +23,9 @@
 								<div class="tab-content">
 									<div class="tab-content-inner active" data-content="signup">
 										<h3>Reserva tu viaje</h3>
-										<form action="#">
-											<div class="row form-group">
-												<div class="col-md-12">
-													<label for="fullname">Tu nombre</label>
-													<input type="text" id="fullname" class="form-control">
-												</div>
-											</div>
-											<div class="row form-group">
-												<div class="col-md-12">
-													<label for="activities">Actividades</label>
-													<select name="#" id="activities" class="form-control">
-														<option value="">Actividades</option>
-														<option value="">Senderismo</option>
-														<option value="">Espeleología</option>
-														<option value="">Natación</option>
-													</select>
-												</div>
-											</div>
-											<div class="row form-group">
-												<div class="col-md-12">
-													<label for="destination">Destino</label>
-													<select name="#" id="destination" class="form-control">
-														<option value="">Filipinas</option>
-														<option value="">EE.UU.</option>
-														<option value="">Australia</option>
-														<option value="">Singapur</option>
-													</select>
-												</div>
-											</div>
-											
-											<div class="row form-group">
-												<div class="col-md-12">
-													<label for="date-start">Fecha de viaje</label>
-													<input type="text" id="date-start" class="form-control">
-												</div>
-											</div>
-
+										<form method="POST">
+											{% csrf_token %}
+											{{ reservaForm.as_p }}
 											<div class="row form-group">
 												<div class="col-md-12">
 													<input type="submit" class="btn btn-primary btn-block" value="Enviar">
@@ -67,8 +33,6 @@
 											</div>
 										</form>	
 									</div>
-
-									
 								</div>
 							</div>
 						</div>

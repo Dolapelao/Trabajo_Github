@@ -11,7 +11,7 @@ class ReservaForm(ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'actividad': forms.Select(attrs={'class': 'form-control'}),
             'destino': forms.Select(attrs={'class': 'form-control'}),
-            'fecha_viaje': forms.DateInput(attrs={'class': 'form-control'}),
+            'fecha_viaje': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
 
 class ContactForm(ModelForm):
