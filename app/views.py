@@ -84,10 +84,8 @@ def admin_reservas(request):
 @user_passes_test(lambda u: u.is_superuser)
 def mod_reservas(request, id):
     reserva = Reserva.objects.get(id=id)
-    fecha_formateada = reserva.fecha_viaje.strftime('%Y-%m-%d')
     datos={
-        'form': ReservaForm(instance=reserva),
-        'fecha': fecha_formateada
+        'form': ReservaForm(instance=reserva)
     }
 
     if request.method=='POST':
@@ -96,3 +94,13 @@ def mod_reservas(request, id):
             formulario.save()
             return redirect('admin_reservas')
     return render(request, 'app/modificar_reserva.html', datos)
+
+@login_required(login_url='/login')
+@user_passes_test(lambda u: u.is_superuser)
+def form_del_cargo(request, id):
+    reserva = Reserva.objects.filter(id=id)
+    
+    for re in reserva:
+        re.delete()
+    
+    return redirect("admin_reservas")

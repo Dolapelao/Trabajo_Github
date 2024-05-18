@@ -46,7 +46,7 @@
 							  <td>{{ re.destino }}</td>
 							  <td>{{ re.fecha_viaje  }}</td>
 							  <td><a href="{% url 'modificar_reservas' re.id %}" class="btn btn-primary">Modificar</a></td>
-							  <td><a href="" class="btn btn-danger">Eliminar</a></td>
+							  <td><a href="{% url 'eliminar_reserva' re.id %}" class="btn btn-danger">Eliminar</a></td>
 						  </tr>
 						  {% endfor %}
 					  </tbody>
