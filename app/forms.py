@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import *
+from django.contrib.auth.models import User
 
 class ReservaForm(ModelForm):
     class Meta:
@@ -23,3 +24,8 @@ class ContactForm(ModelForm):
             'asunto': forms.TextInput(attrs={'class': 'form-control'}),
             'mensaje': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+class RegistroForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'email']

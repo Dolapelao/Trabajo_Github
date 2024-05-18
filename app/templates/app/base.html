@@ -78,6 +78,11 @@
 						</li>
 						<li><a href="{% url 'pricing' %}">Precios</a></li>
 						<li><a href="{% url 'contact' %}">Contacto</a></li>
+						<div class="session">
+							<li style="font-weight: bold; color: cadetblue;">Bienvenido {{ user.username }}</li>
+							<li style="color: red;"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+						</div>
+						
 					</ul>	
 				</div>
 			</div>
