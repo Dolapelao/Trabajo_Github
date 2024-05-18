@@ -28,35 +28,9 @@
 				<div class="col-md-12">
 					<div class="col-md-6 animate-box">
 					<h3>Ponte en contacto</h3>
-					<form action="#">
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="sr-only" for="name">Nombre</label>
-								<input type="text" id="name" class="form-control" placeholder="Tu nombre">
-							</div>
-							
-						</div>
-
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="sr-only" for="email">Correo electrónico</label>
-								<input type="text" id="email" class="form-control" placeholder="Tu dirección de correo electrónico">
-							</div>
-						</div>
-
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="sr-only" for="subject">Asunto</label>
-								<input type="text" id="subject" class="form-control" placeholder="El asunto de este mensaje">
-							</div>
-						</div>
-
-						<div class="row form-group">
-							<div class="col-md-12">
-								<label class="sr-only" for="message">Mensaje</label>
-								<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Escríbenos algo"></textarea>
-							</div>
-						</div>
+					<form method="POST">
+						{% csrf_token %}
+						{{ contactForm.as_p }}
 						<div class="form-group">
 							<input type="submit" value="Enviar mensaje" class="btn btn-primary">
 						</div>
