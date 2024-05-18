@@ -29,3 +29,4 @@ def destination(request):
 
 def pricing(request):
     return render (request,"app/pricing.html")
+
