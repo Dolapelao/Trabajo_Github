@@ -7,6 +7,5 @@ urlpatterns = [
     path('app/contact/', contact, name='contact'),
     path('app/destination/', destination, name='destination'),
     path('app/pricing/', pricing, name='pricing'),    
+    
 ]
-
-
