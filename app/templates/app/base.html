@@ -66,17 +66,10 @@
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
 						<li><a href="{% url 'destination' %}">Destino</a></li>
-						<li class="has-dropdown">
-							<a href="#">Viaje</a>
-							<ul class="dropdown">
-								<li><a href="#">Europa</a></li>
-								<li><a href="#">Asia</a></li>
-								<li><a href="#">América</a></li>
-								<li><a href="#">Canadá</a></li>
-							</ul>
-						</li>
 						<li><a href="{% url 'pricing' %}">Precios</a></li>
 						<li><a href="{% url 'contact' %}">Contacto</a></li>
+							<li style="font-weight: bold; color: cadetblue;">Bienvenido {{ user.username }}</li>
+							<li style="color: red;"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 					</ul>	
 				</div>
 			</div>	
