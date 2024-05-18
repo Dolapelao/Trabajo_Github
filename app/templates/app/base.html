@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	{% load static %}
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Traveler &mdash; Plantilla de sitio web gratuita, plantilla HTML5 gratuita de FreeHTML5.co</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Plantilla de sitio web HTML5 gratuita de FreeHTML5.co" />
+	<meta name="keywords" content="plantillas de sitios web gratuitas, html5 gratuito, plantilla gratuita, bootstrap gratuito, plantilla de sitio web gratuita, html5, css3, móvil primero, receptivo" />
+	<meta name="author" content="FreeHTML5.co" />
+
+	<!-- Integración con Facebook y Twitter -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'app/css/animate.css' %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'app/css/icomoon.css' %}">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="{% static 'app/css/themify-icons.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'app/css/bootstrap.css' %}">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'app/css/magnific-popup.css' %}">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'app/css/bootstrap-datepicker.min.css' %}">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'app/css/owl.theme.default.min.css' %}">
+
+	<!-- Estilo del tema -->
+	<link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+	<!-- Modernizr JS -->
+	<script src="{% static 'app/js/modernizr-2.6.2.min.js' %}"></script>
+	
+
+        
+</head>
+<body>
+		
+	<div class="gtco-loader"></div>
+	
+	<div id="page">
+
+	<nav class="gtco-nav" role="navigation">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div id="gtco-logo"><a href="{% url 'index' %}">Inicio</a></div>
+				</div>
+				<div class="col-xs-8 text-right menu-1">
+					<ul>
+						<li><a href="{% url 'destination' %}">Destino</a></li>
+						<li><a href="{% url 'pricing' %}">Precios</a></li>
+						<li><a href="{% url 'contact' %}">Contacto</a></li>
+						<li style="font-weight: bold; color: cadetblue;">Bienvenido {{ user.username }}</li>
+						<li style="color: red;"><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+						{% if user.is_staff %}
+							<a href="{% url 'admin_reservas' %}"><li>Ver reservas</li></a>
+						{% endif %}
+					</ul>	
+				</div>
+			</div>	
+		</div>
+	</nav>
+    <main>
+        <div id="contenido">
+            
+            {% block contenido %}
+
+
+            {% endblock %}
+
+        </div>
+    </main>
+
+	<footer id="gtco-footer" role="contentinfo">
+		<div class="gtco-container">
+			<div class="row row-p	b-md">
+
+				<div class="col-md-4">
+					<div class="gtco-widget">
+						<h3>Sobre nosotros</h3>
+						<p>Somos una empresa de viajes enfocada en la experiencia de usuario, nos esforzamos para que puedas tener la mejoor experiencia posible.</p>
+					</div>
+				</div>
+
+				<div class="col-md-2 col-md-push-1">
+					<div class="gtco-widget">
+						<h3>Destinos</h3>
+						<ul class="gtco-footer-links">
+							<li><a href="#">Europa</a></li>
+							<li><a href="#">Australia</a></li>
+							<li><a href="#">Asia</a></li>
+							<li><a href="#">Canada</a></li>
+							<li><a href="#">Dubai</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-md-2 col-md-push-1">
+					<div class="gtco-widget">
+						<h3>Hoteles</h3>
+						<ul class="gtco-footer-links">
+							<li><a href="#">Luxe Hotel</a></li>
+							<li><a href="#">Italy 5 Star hotel</a></li>
+							<li><a href="#">Dubai Hotel</a></li>
+							<li><a href="#">Deluxe Hotel</a></li>
+							<li><a href="#">BoraBora Hotel</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-md-push-1">
+					<div class="gtco-widget">
+						<h3>Contactanos</h3>
+						<ul class="gtco-quick-contact">
+							<li><a href="#"><i></i> +5691234567</a></li>
+							<li><a href="#"><i></i> info@duocuc.cl</a></li>
+							<li><a href="#"><i></i> habla con nosotros</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row copyright">
+				<div class="col-md-12">
+					<p class="pull-left">
+						<small class="block">&copy; 2024  Todos Los drechos reservados.</small> 
+						<small class="block">Diseñado por: <a href="https://freehtml5.co/" target="_blank">Git</a> Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a></small>
+					</p>
+					<p class="pull-right">
+						<ul class="gtco-social-icons pull-right">
+							<li><a href="#"><i ></i></a></li>
+							<li><a href="#"><i></i></a></li>
+							<li><a href="#"><i></i></a></li>
+							<li><a href="#"><i></i></a></li>
+						</ul>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+	</div>
+	
+	<!-- jQuery -->
+	<script src="{% static 'app/js/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'app/js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'app/js/jquery.waypoints.min.js' %}"></script>
+	<!-- Carousel -->
+	<script src="{% static 'app/js/owl.carousel.min.js' %}"></script>
+	<!-- countTo -->
+	<script src="{% static 'app/js/jquery.countTo.js' %}"></script>
+
+	<!-- Stellar Parallax -->
+	<script src="{% static 'app/js/jquery.stellar.min.js' %}"></script>
+
+	<!-- Magnific Popup -->
+	<script src="{% static 'app/js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'app/js/magnific-popup-options.js' %}"></script>
+	
+	<!-- Datepicker -->
+	<script src="{% static 'app/js/bootstrap-datepicker.min.js' %}"></script>
+	
+
+	<!-- Main -->
+	<script src="{% static 'app/js/main.js' %}"></script>
+
+</body>
+</html>
+
