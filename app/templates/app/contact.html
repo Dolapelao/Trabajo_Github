@@ -111,6 +111,11 @@
 			</div>
 		</div>
 	</header>
+	<form method="POST">
+		{% csrf_token %}
+		{{ contactForm.as_p }}
+		<button type="submit">Enviar mensaje</button>
+	</form>
 	
 	
 	<div class="gtco-section border-bottom">
