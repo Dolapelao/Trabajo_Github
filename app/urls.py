@@ -10,4 +10,5 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('register/', register, name='register'),
     path('logout/', cerrar_sesion, name='logout'),
+    path('reservas', admin_reservas, name='admin_reservas')
 ]

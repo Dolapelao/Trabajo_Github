@@ -73,3 +73,9 @@ def cerrar_sesion(request):
         del request.session['username']  
     
     return redirect('login') 
+
+@login_required(login_url='/login')
+@user_passes_test(lambda u: u.is_superuser)
+def admin_reservas(request):
+    reserva = Reserva.objects.all()
+    return render(request, 'app/administrar_reservas.html', {'reservas': reserva})
