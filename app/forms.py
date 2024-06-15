@@ -13,6 +13,12 @@ class ReservaForm(ModelForm):
             'destino': forms.Select(attrs={'class': 'form-control'}),
             'fecha_viaje': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
+        
+        def __init__(self, *args, **kwargs):
+            super(ReservaForm, self).__init__(*args, **kwargs)
+            # Cambia el formato de la fecha a 'YYYY-MM-DD'
+            if self.instance and self.instance.fecha_viaje:
+                self.initial['fecha_viaje'] = self.instance.fecha_viaje.strftime('%Y-%m-%d')
 
 class ContactForm(ModelForm):
     class Meta:

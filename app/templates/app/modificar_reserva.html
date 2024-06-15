@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+{% extends 'app/base.html'%}
+
+{% load static %}
+
+{% block contenido%}
+
+</header>
+
+	<div class="gtco-section">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					<h2>Reservas en espera:</h2>
+				</div>
+			</div>
+			<section id="yellow-bg">
+				<form method="POST" action="" autocomplete="off">
+					{% csrf_token %}
+					<table class="table table-bordered text-light">
+						{{ form.as_table }}
+					</table>
+			  
+					<button type="submit" class="btn btn-success">Modificar</button>
+			  	</form>
+				  <p>&nbsp;</p>
+			  </div>
+
+{% endblock %}
+

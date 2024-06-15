@@ -73,3 +73,34 @@ def cerrar_sesion(request):
         del request.session['username']  
     
     return redirect('login') 
+
+@login_required(login_url='/login')
+@user_passes_test(lambda u: u.is_superuser)
+def admin_reservas(request):
+    reserva = Reserva.objects.all()
+    return render(request, 'app/administrar_reservas.html', {'reservas': reserva})
+
+@login_required(login_url='/login')
+@user_passes_test(lambda u: u.is_superuser)
+def mod_reservas(request, id):
+    reserva = Reserva.objects.get(id=id)
+    datos={
+        'form': ReservaForm(instance=reserva)
+    }
+
+    if request.method=='POST':
+        formulario = ReservaForm(data=request.POST, instance=reserva)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('admin_reservas')
+    return render(request, 'app/modificar_reserva.html', datos)
+
+@login_required(login_url='/login')
+@user_passes_test(lambda u: u.is_superuser)
+def form_del_cargo(request, id):
+    reserva = Reserva.objects.filter(id=id)
+    
+    for re in reserva:
+        re.delete()
+    
+    return redirect("admin_reservas")
