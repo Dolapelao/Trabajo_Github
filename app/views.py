@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 def index(request):
     reservaForm = ReservaForm()
     reserva = Reserva.objects.all()
-    destinos = Destino.objects.all()
+    destinos = Destino.objects.all().order_by('nombre')
     if request.method == 'POST':
         form = ReservaForm(request.POST)
         if form.is_valid():
@@ -77,8 +77,10 @@ def cerrar_sesion(request):
 @login_required(login_url='/login')
 @user_passes_test(lambda u: u.is_superuser)
 def admin_reservas(request):
-    reserva = Reserva.objects.all()
-    return render(request, 'app/administrar_reservas.html', {'reservas': reserva})
+    reserva = Reserva.objects.all().order_by('-fecha_viaje')
+    reservas_este_mes = Reserva.reservas_este_mes()
+    
+    return render(request, 'app/administrar_reservas.html', {'reservas': reserva, 'reservas_este_mes': reservas_este_mes})
 
 @login_required(login_url='/login')
 @user_passes_test(lambda u: u.is_superuser)
