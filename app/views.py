@@ -77,7 +77,7 @@ def cerrar_sesion(request):
 @login_required(login_url='/login')
 @user_passes_test(lambda u: u.is_superuser)
 def admin_reservas(request):
-    reserva = Reserva.objects.all()
+    reserva = Reserva.objects.all().order_by('-fecha_viaje')
     reservas_este_mes = Reserva.reservas_este_mes()
     
     return render(request, 'app/administrar_reservas.html', {'reservas': reserva, 'reservas_este_mes': reservas_este_mes})
