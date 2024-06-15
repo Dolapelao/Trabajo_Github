@@ -78,7 +78,9 @@ def cerrar_sesion(request):
 @user_passes_test(lambda u: u.is_superuser)
 def admin_reservas(request):
     reserva = Reserva.objects.all()
-    return render(request, 'app/administrar_reservas.html', {'reservas': reserva})
+    reservas_este_mes = Reserva.reservas_este_mes()
+    
+    return render(request, 'app/administrar_reservas.html', {'reservas': reserva, 'reservas_este_mes': reservas_este_mes})
 
 @login_required(login_url='/login')
 @user_passes_test(lambda u: u.is_superuser)
