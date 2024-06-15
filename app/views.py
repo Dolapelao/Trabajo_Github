@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 def index(request):
     reservaForm = ReservaForm()
     reserva = Reserva.objects.all()
-    destinos = Destino.objects.all()
+    destinos = Destino.objects.all().order_by('nombre')
     if request.method == 'POST':
         form = ReservaForm(request.POST)
         if form.is_valid():
