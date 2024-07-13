@@ -53,7 +53,10 @@
 				  </table>
 				  <a href="{% url 'index' %}" class="btn btn-success">Nuevo registro</a>
 				  <p>&nbsp;</p>
-
+				  <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					<h4>Reservas de este mes: {{ reservas_este_mes }}</h4>
+					</div>
+				
 				  <div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
 						<h2>Generar excel de reservas: </h2>
@@ -77,13 +80,23 @@
 						<option value="12">Diciembre</option>
 					</select>
 					<br>
-					<button type="submit" name="generar_reporte" class="btn btn-primary">Generar Reporte de reservas</button>
-					</form>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+							<button type="submit" name="generar_reporte" class="btn btn-primary">Generar Reporte de reservas</button>
+						</form>
+						</div>
+					</div>
+					
+				<hr>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+							<h2>Obtener reporte de todas las reservas: </h2>
+							<form action="{% url 'admin_reservas' %}" method="get">
+								<button type="submit" name="full_reporte" class="btn btn-primary">Generar reporte de todas las reservas</button>
+							</form>
+						  </div>
+					  </div>
 			  </div>
-
-			<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-				<h4>Reservas de este mes: {{ reservas_este_mes }}</h4>
-			</div>
-
+			</section>
 {% endblock %}
 
