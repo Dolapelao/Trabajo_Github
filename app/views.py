@@ -15,7 +15,7 @@ from datetime import datetime
 def index(request):
     reservaForm = ReservaForm()
     reserva = Reserva.objects.all()
-    destinos = Destino.objects.all()
+    destinos = Destino.objects.all().order_by('nombre')
     if request.method == 'POST':
         form = ReservaForm(request.POST)
         if form.is_valid():
