@@ -53,6 +53,32 @@
 				  </table>
 				  <a href="{% url 'index' %}" class="btn btn-success">Nuevo registro</a>
 				  <p>&nbsp;</p>
+
+				  <div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+						<h2>Generar excel de reservas: </h2>
+					  </div>
+				  </div>
+				  
+				  <form action="{% url 'admin_reservas' %}" method="get">
+					Seleccione el mes para generar el reporte: 
+					<select name="mes" class="form-control">
+						<option value="1">Enero</option>
+						<option value="2">Febrero</option>
+						<option value="3">Marzo</option>
+						<option value="4">Abril</option>
+						<option value="5">Mayo</option>
+						<option value="6">Junio</option>
+						<option value="7">Julio</option>
+						<option value="8">Agosto</option>
+						<option value="9">Septiembre</option>
+						<option value="10">Octubre</option>
+						<option value="11">Noviembre</option>
+						<option value="12">Diciembre</option>
+					</select>
+					<br>
+					<button type="submit" name="generar_reporte" class="btn btn-primary">Generar Reporte de reservas</button>
+					</form>
 			  </div>
 
 {% endblock %}
