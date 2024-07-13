@@ -4,6 +4,11 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from .forms import *
 from django.contrib.auth.decorators import user_passes_test, login_required
+from django.http import HttpResponse
+import xlsxwriter
+from django.db.models import Q
+from django.utils.timezone import make_aware
+from datetime import datetime
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -77,10 +82,51 @@ def cerrar_sesion(request):
 @login_required(login_url='/login')
 @user_passes_test(lambda u: u.is_superuser)
 def admin_reservas(request):
-    reserva = Reserva.objects.all().order_by('-fecha_viaje')
-    reservas_este_mes = Reserva.reservas_este_mes()
-    
-    return render(request, 'app/administrar_reservas.html', {'reservas': reserva, 'reservas_este_mes': reservas_este_mes})
+    if "generar_reporte" in request.GET:
+        mes_seleccionado = int(request.GET.get('mes'))
+        año_actual = datetime.now().year
+        
+        #transformar el mes seleccionado a un nombre
+        meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        mes_string = meses[mes_seleccionado - 1]
+
+        # Crear una respuesta del tipo Excel
+        response = HttpResponse(content_type='application/vnd.ms-excel')
+        response['Content-Disposition'] = f'attachment; filename="reporte reservas {mes_string}.xlsx"'
+
+        # Crear un libro y una hoja de Excel
+        workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+        worksheet = workbook.add_worksheet()
+
+        # Escribir los encabezados
+        worksheet.write('A1', 'Nombre de la Reserva')
+        worksheet.write('B1', 'Actividad')
+        worksheet.write('C1', 'Destino')
+        worksheet.write('D1', 'Fecha del Viaje')
+
+        # Filtrar reservas por el mes seleccionado
+        inicio_mes = make_aware(datetime(año_actual, mes_seleccionado, 1))
+        if mes_seleccionado == 12:
+            fin_mes = make_aware(datetime(año_actual + 1, 1, 1))
+        else:
+            fin_mes = make_aware(datetime(año_actual, mes_seleccionado + 1, 1))
+
+        reservas = Reserva.objects.filter(fecha_viaje__gte=inicio_mes, fecha_viaje__lt=fin_mes)
+
+        # Escribir los datos de las reservas en el Excel
+        for idx, reserva in enumerate(reservas, start=1):
+            worksheet.write(idx, 0, reserva.nombre)
+            worksheet.write(idx, 1, reserva.actividad.nombre)
+            worksheet.write(idx, 2, reserva.destino.nombre)
+            worksheet.write(idx, 3, str(reserva.fecha_viaje))
+
+        # Cerrar el libro de Excel
+        workbook.close()
+
+        return response
+    else:
+        reserva = Reserva.objects.all()
+        return render(request, 'app/administrar_reservas.html', {'reservas': reserva})
 
 @login_required(login_url='/login')
 @user_passes_test(lambda u: u.is_superuser)
