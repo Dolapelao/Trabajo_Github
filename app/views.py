@@ -5,7 +5,6 @@ from django.contrib import messages
 from .forms import *
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.http import HttpResponse
-import xlsxwriter
 from django.db.models import Q
 from django.utils.timezone import make_aware
 from datetime import datetime
